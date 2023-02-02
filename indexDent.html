@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <title>MedacDent S.L.</title>
+    <link rel="stylesheet" href="css/bienvenidaDent.css">
+</head>
+
+<!-- BODY -->
+<body>
+    <header>
+        <img id="logo" src="img/logo.png" />
+
+        <nav>
+            <h1 id="título">MedacDent S.L.</h1>
+            <div class="cabecera">
+            </div>
+        </nav>
+    </header>
+
+<!-- FORMULARIO-->
+
+        <!--Creamos datos del formulario, con su tipo, clase, identificador, espacio de nombre y expresion regular pattern que se repita de 1 a n veces-->
+        <div class="container">
+            <form action class="mt-3" id="formularioCitas">
+                <div class="row mb-3">
+                    <label class="col-2 col-form-label" for="nombreInput" class="form-label">Nombre</label>
+                    <div class="col-10">
+                        <input type="text" name = "nombreInput" class="form-control" id="nombreInput" placeholder="Nombre" pattern="[A-Za-z]{1,10}">
+                    </div>
+                </div>
+                <br>
+                <div class="row mb-3">
+                    <label class="col-2 col-form-label" for="apellidosInput" class="form-label">Apellidos</label>
+                    <div class="col-10">
+                        <input type="text" name = "apellidosInput" class="form-control" id="apellidosInput" placeholder="Apellidos" pattern="[A-Za-z]{1,10}">
+                    </div>
+                </div>
+                <br>
+                <div class="row mb-3">
+                    <label class="col-2 col-form-label" for="dniInput" class="form-label">DNI</label>
+                    <div class="col-10">
+                        <input type="text/number" name = "dniInput" class="form-control" id="dniInput" placeholder="DNI" pattern="[0-9]{8}[A-Za-z]{1}">
+                    </div>
+                </div>
+                <br>
+                <div class="row mb-3">
+                    <label class="col-2 col-form-label" for="nacimientoInput" class="form-label">Fecha de
+                        nacimiento</label>
+                    <div class="col-10">
+                        <input type="date" name = "nacimientoInput" class="form-control" id="nacimientoInput" placeholder="Fecha de nacimiento">
+                    </div>
+                </div>
+                <br>
+                <div class="row mb-3">
+                    <label class="col-2 col-form-label" for="telefonoInput" class="form-label">Telefono</label>
+                    <div class="col-10">
+                        <input type="text" name = "telefonoInput" class="form-control" id="telefonoInput" placeholder="Teléfono" pattern="[0-9]{9}">
+                    </div>
+                </div>
+                <br>
+                <div class="row mb-3">
+                    <label class="col-2 col-form-label" for="emailInput" class="form-label">Email </label>
+                    <div class="col-10">
+                        <input type="email" name ="emailInput" class="form-control" id="emailInput" placeholder="E-mail" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
+                    </div>
+                </div>
+                <br>
+
+                <div class="mb-3">
+                    <label class="col-2 col-form-label" for="textArea" class="form-label">Comentarios</label>
+                    <div class="col-10">
+                        <input type ="textarea" class="form-control" name = "comentariosInput" id="textArea" placeholder="Introduzca comentarios sobre su cita"
+                            rows="3"></textarea>
+                    </div>
+                </div>
+                <br>
+
+            <!-- Añadimos la función enviarFormulario() asociada al botón de enviar (registrar cita)-->    
+                <div class="row mb-3">
+                    <!-- boton enviar formulario -->
+                    <input type="submit" button onclick="enviarFormulario()"  value="Enviar" class="boton registrar" id="registrarCita" >
+                    <!--boton cambiar contenido de una celda-->
+                    <input type="button" onclick="cambiarContenidoCelda()" value="Cambiar datos de la cita">
+                </div>
+        </div>
+        </div>
+        </div>
+
+<!-- TABLA -->
+
+        <table class="table" id="tablaCita">
+                
+            <thead>    
+                <tr>
+                    
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Apellidos</th>
+                    <th scope="col">DNI</th>
+                    <th scope="col">Fecha nacimiento</th>
+                    <th scope="col">Teléfono</th>
+                    <th scope="col">E-mail</th>
+                    <th scope="col">Comentarios</th>
+                    <th scope="col">Eliminar</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>       
+                    <td></td>            
+                </tr>
+              
+                
+            </tbody>
+            </table> 
+
+<!-- SCRIPT -->
+
+            <!-- Insertamos los script para validar el formulario y registrar las citas en la tabla-->
+        <script src = './js/validacionFormulario.js'></script>
+        <script src = './js/registrarCita.js'></script>
+
+        <script>
+            // creamos una función para cambiar el contenido de la celda
+            function cambiarContenidoCelda()  {
+                // creamos las variables fila y columna con un mensaje para localizar el dato por fila y columna
+                let fila = parseInt(prompt('Introduzca el numero de la fila', 1 ));
+                let columna = parseInt(prompt('Introduzca el número de la columna', 1));
+                // creamos un bucle para añadir los valores en la tabla
+                if ((fila >= 1 && fila <=2) && (columna >= 1 && columna <= 2)) {
+                    let celdas = document.getElementById('tablaCita').rows[fila-1].cells;
+                    celdas[columna -1].innerHTML = prompt('Introduzca el nuevo valor de su cita:');
+                }
+            }             
+      </script>
+    
+    </body>
+
+    <!--PIE DE PAGINA-->
+
+    <footer>
+        <div class="contactoPie">
+            <p id="parrafoPie">MedacDent S.L.</p>
+            <p id="parrafoPie">Teléfono: <a class="tel" href="tel:+34666666666">+34 666666666</a></p>
+            <p id="parrafoPie"><span class="street-address">Av. Andalucia</span>, <span class="extended-address">Bloque 2, 1ºA</span> <br></p>
+            <p id="parrafoPie"><span class="postal-code">41099</span> <br></p>
+            <p id="parrafoPie"><span class="locality">Sevilla / España</span><br></p>
+            <p id="parrafoPie"><a class="email" href="mailto:info@medacDent.com">info@medacDent.com</a></p>
+        </div>
+    </footer>
+
+</html>
